@@ -1,0 +1,15 @@
+{
+  "name": "navegador-nuxt-electron",
+  "version": "1.0.0",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev:nuxt": "cd nuxt-app && npx nuxi dev",
+    "dev:electron": "wait-on http://localhost:3000 && electron .",
+    "dev": "concurrently \"npm run dev:nuxt\" \"npm run dev:electron\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "electron": "^29.0.0",
+    "wait-on": "^7.0.1"
+  }
+}

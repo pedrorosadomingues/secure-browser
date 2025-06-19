@@ -1,0 +1,47 @@
+# Ignore node_modules da raiz e do Nuxt
+node_modules/
+nuxt-app/node_modules/
+
+# Ignore outputs de build do Nuxt
+nuxt-app/.nuxt/
+nuxt-app/.output/
+nuxt-app/.cache/
+
+# Electron build/cache
+electron/out/
+electron/release/
+electron/*.log
+*.asar
+*.exe
+*.dll
+
+# Vite/Nuxt
+.nuxt/
+.output/
+.cache/
+
+# Mac e Windows
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDEs e configurações locais
+.vscode/
+.idea/
+
+# Arquivos de ambiente
+.env
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# Arquivos temporários
+*.swp
+*~
+
+# Lockfiles (opcional se você usar só um gerenciador de pacotes)
+pnpm-lock.yaml
+yarn.lock
