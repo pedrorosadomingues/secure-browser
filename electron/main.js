@@ -46,6 +46,14 @@ function createWindow() {
 
   view.webContents.loadURL("https://google.com");
 
+  view.webContents.on("did-navigate", (event, url) => {
+    mainWindow.webContents.send("update-url", url);
+  });
+
+  view.webContents.on("did-navigate-in-page", (event, url) => {
+    mainWindow.webContents.send("update-url", url);
+  });
+
   mainWindow.loadURL("http://localhost:3000");
 }
 

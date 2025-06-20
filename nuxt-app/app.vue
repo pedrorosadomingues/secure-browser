@@ -14,10 +14,20 @@
       />
       <button @click="navigate" class="go-btn">Ir</button>
       <button class="settings-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+          />
         </svg>
       </button>
     </div>
@@ -31,12 +41,11 @@
   </div>
 </template>
 
-
 <style scoped>
 .browser {
   background-color: #0f0f14;
   color: #d0d0dc;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -130,26 +139,29 @@
 }
 </style>
 
-
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from "vue";
 
-const url = ref('https://google.com')
+const url = ref("https://google.com");
 
 function navigate() {
-  if (!url.value.startsWith('http')) {
-    url.value = 'https://' + url.value
+  if (!url.value.startsWith("http")) {
+    url.value = "https://" + url.value;
   }
-  if (window.electronAPI?.goToURL) {
-    window.electronAPI.goToURL(url.value)
-  }
+  window.electronAPI?.goToURL(url.value);
 }
 
+onMounted(() => {
+  window.electronAPI?.onURLChange?.((newUrl) => {
+    url.value = newUrl;
+  });
+});
+
 function goBack() {
-  window.electronAPI?.goBack?.()
+  window.electronAPI?.goBack?.();
 }
 
 function goForward() {
-  window.electronAPI?.goForward?.()
+  window.electronAPI?.goForward?.();
 }
 </script>
