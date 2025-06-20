@@ -1,43 +1,36 @@
 <template>
   <div class="browser dark">
+    <!-- Barra superior -->
     <div class="browser-header">
       <div class="nav-buttons">
-        <button class="nav-btn">&#8592;</button>
-        <button class="nav-btn">&#8594;</button>
+        <button class="nav-btn" @click="goBack">←</button>
+        <button class="nav-btn" @click="goForward">→</button>
       </div>
-       <input
+      <input
         v-model="url"
         @keyup.enter="navigate"
         class="url-bar"
         placeholder="Digite a URL"
       />
-      <button @click="navigate" class="ml-2 px-4 py-2 bg-blue-600 rounded hover:bg-blue-700">
-        Ir
-      </button>
+      <button @click="navigate" class="go-btn">Ir</button>
       <button class="settings-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
       </button>
     </div>
 
+    <!-- Abas -->
     <div class="tabs">
-      <div class="tab active">
-        Google
-        <span class="close">&#10005;</span>
-      </div>
-      <div class="tab">
-        Facebook
-        <span class="close">&#10005;</span>
-      </div>
-      <div class="tab">
-        Meta Ads
-      </div>
-    </div>
-
-    <div class="browser-body">
-      <p class="placeholder">Conteúdo do site aqui...</p>
+      <div class="tab active">Google <span class="close">×</span></div>
+      <div class="tab">Facebook <span class="close">×</span></div>
+      <div class="tab">Meta Ads</div>
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .browser {

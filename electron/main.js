@@ -69,3 +69,15 @@ ipcMain.on("go-to-url", (event, url) => {
     view.webContents.loadURL(url);
   }
 });
+
+ipcMain.on("go-back", () => {
+  if (view && view.webContents.canGoBack()) {
+    view.webContents.goBack();
+  }
+});
+
+ipcMain.on("go-forward", () => {
+  if (view && view.webContents.canGoForward()) {
+    view.webContents.goForward();
+  }
+});
